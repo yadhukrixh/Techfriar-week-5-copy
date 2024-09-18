@@ -1,1 +1,43 @@
-/node_modules
+# Node.js dependencies
+node_modules/
+
+# Build output directories
+dist/
+build/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE and editor directories
+.vscode/
+.idea/
+
+# Coverage directory used by testing tools
+coverage/
+
+# Yarn package manager
+.yarn/
+.yarnrc
+
+# npm package manager
+package-lock.json
+npm-debug.log
+npm-debug.log.*
+
+# Optional: Ignore files created by IDEs
+*.swp
+*.swo
+
+# Optional: Ignore temporary files
+*.tmp
+*.temp
+
+# Optional: Ignore local development files
+local.json
