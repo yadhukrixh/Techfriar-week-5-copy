@@ -1,0 +1,71 @@
+/* Popup.module.css */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .popup {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+ .popup h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signinOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+ .popup button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .popup button img{
+    height: 50px;
+    width: 50px;
+  }
+  
+  .googleBtn {
+    background-color: #4285f4;
+    color: white;
+  }
+  
+  .facebookBtn {
+    background-color: #4267b2;
+    color: white;
+  }
+  

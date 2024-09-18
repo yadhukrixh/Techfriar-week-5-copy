@@ -1,0 +1,84 @@
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.adminNav{
+    padding: 0;
+    height: 80px;
+    width: 100dvw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #b92528;
+    position: fixed;
+    top: 0;
+    z-index: 30;
+}
+
+.adminNav h2{
+    color: #fff;
+}
+
+.adminNav div{
+    padding-right: 50px;
+    display: flex;
+    column-gap: calc(5dvw);
+}
+
+.adminNav div span{
+    cursor: pointer;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #ffffff;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.4s ease-in-out;
+}
+
+.adminNav div span:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.active{
+    background-color: #fff !important;
+    color: #000000 !important;
+}
+
+
+.searchButton {
+padding: 10px 20px;
+font-size: 16px;
+color: white;
+background-color: #0070f3;
+border: none;
+border-radius: 0 4px 4px 0;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+background-color: #005bb5;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .adminNav{
+        font-size: 8px;
+        padding-left: 10px;
+        gap: 10px;
+        padding-right: 10px;
+    }
+
+    .adminNav div{
+        padding-right: 0px;
+        column-gap: 10px;
+    }
+}

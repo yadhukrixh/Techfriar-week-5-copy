@@ -1,0 +1,46 @@
+/* ScheduleCard.module.css */
+.scheduleCardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scheduleCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .movieSection {
+    margin-top: 1rem;
+  }
+
+  .movieSection h3{
+    color: #B43F3F;
+  }
+  
+  .showDateSection {
+    margin-top: 0.5rem;
+  }
+  
+  .showtimeSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  .deleteButton {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #f44336;
+  }
+  

@@ -1,0 +1,67 @@
+.ticketCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    gap: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    align-items: center;
+    width: 100%;
+}
+
+.qrCodeContainer {
+    text-align: center;
+}
+
+.qrCode {
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: 16px;
+}
+
+.ticketDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticketDetails h2 {
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.ticketDetails p {
+    margin: 4px 0;
+}
+
+@media (min-width:580px)and(max-width: 700px) {
+    .ticketCard {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .qrCodeContainer {
+        width: 100%;
+    }
+
+
+    .qrCode {
+        width: 100% !important;
+        height: 300px;
+    }
+
+    .ticketCard {
+        padding: 12px;
+        margin: 12px;
+    }
+
+}
+
+@media (max-width:580px){
+    .ticketCard{
+        gap: 20px;
+        flex-direction: column-reverse;
+    }
+}

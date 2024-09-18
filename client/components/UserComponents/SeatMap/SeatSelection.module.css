@@ -1,0 +1,199 @@
+/* SeatSelection.module.css */
+.main {
+  padding: 30px;
+  width: 100%;
+  margin-top: 80px;
+}
+
+
+.container {
+  margin-top: 20px !important;
+  display: grid;
+  grid-template-columns: repeat(15, max-content);
+  /* 10 columns for the grid */
+  gap: 20px;
+  justify-content: center;
+  justify-items: center;
+  margin: 20px;
+}
+
+.movieDetails {
+  margin-top: 30px;
+  padding: 20px;
+  width: 100%;
+  border: 2px solid red;
+  border-radius: 20px;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  line-height: 30px;
+}
+
+.booked {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.252);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.available {
+  border: 2px solid #059212;
+  color: #fff;
+  background-color: #257e2489;
+}
+
+.selected {
+  background-color: rgb(9, 138, 0);
+  color: #fff;
+}
+
+.screen {
+  margin-top: 50px;
+  display: block;
+  width: 300px !important;
+  height: 10px !important;
+  background-color: rgba(57, 117, 136, 0.598);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 8px;
+}
+
+.paymentSection {
+  margin-top: 30px;
+}
+
+.phoneNumberSection {
+  top: 0;
+  margin: 0 !important;
+  z-index: 999;
+  height: 110%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100dvw;
+  background-color: #0000003e;
+  overflow: hidden;
+}
+
+.bookingDetails {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookingDetails span{
+  cursor: pointer;
+  font-weight: 800;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bookingDetails h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.inputSection{
+  padding: 0;
+  width: 100%;
+
+}
+
+
+.confirmSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+
+
+.errorMessage {
+  color:red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .bookingDetails {
+    width: 90%;
+  }
+
+  .bookingDetails h2 {
+    font-size: 20px;
+  }
+
+  .sendBookingDetailsButton,
+  .confirmButton {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookingDetails {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .bookingDetails h2 {
+    font-size: 18px;
+  }
+
+  .sendBookingDetailsButton,
+  .confirmButton {
+    font-size: 12px;
+  }
+}
+
+
+
+
+@media(max-width:768px) {
+  .main {
+    margin-top: calc(10dvw) !important;
+  }
+
+  .container {
+    margin-top: 50px;
+    margin-left: 400px;
+    margin-right: 400px;
+  }
+
+  .seatContainer {
+    display: block;
+    overflow: scroll !important;
+    width: 100dvw;
+  }
+
+  .seatContainer::-webkit-scrollbar {
+    display: none;
+  }
+}

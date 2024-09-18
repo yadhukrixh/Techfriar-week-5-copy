@@ -1,0 +1,32 @@
+.datePickerWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.datePickerInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.datePickerInput:hover {
+    border-color: #007bff;
+}
+
+.datePickerInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}

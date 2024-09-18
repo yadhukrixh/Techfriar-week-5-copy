@@ -1,0 +1,26 @@
+.selectWrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .selectBox {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .selectBox:hover {
+    border-color: #007bff;
+  }
+  
+  .selectBox:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  

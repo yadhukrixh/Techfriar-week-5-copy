@@ -1,0 +1,69 @@
+.theaterListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.theaterCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theaterIndex {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-right: 20px;
+  color: #333;
+}
+
+.theaterInfo {
+  flex-grow: 1;
+}
+
+.theaterName {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.theaterAddress {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.addButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .theaterCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .addButton {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

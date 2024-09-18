@@ -1,0 +1,15 @@
+.main {
+  background-color: #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+@media (max-width:540px){
+  .main{
+    padding-top: calc(15dvw);
+  }
+}
+
