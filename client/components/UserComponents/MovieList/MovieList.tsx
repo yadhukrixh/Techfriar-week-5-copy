@@ -1,5 +1,4 @@
-"use client";
-
+// Import necessary dependencies
 import React, { useEffect, useState } from "react";
 import styles from "./MovieList.module.css";
 import CustomSelector from "../../reusableComponents/SelectorComponent/SelectorComponent"; // Adjust the import path accordingly
@@ -9,6 +8,7 @@ import { fetchMoviesToBook } from "@/utils/userUtils";
 import { movieDetails } from "@/components/AdminComponents/ManageMovie/ManageMovie";
 import BookMovieCard from "../BookMovieCard/BookMovieCard";
 
+// Define the Movie interface
 export interface Movie {
   id: string;
   posterUrl: string;
@@ -17,23 +17,27 @@ export interface Movie {
   genre: string; // Added category field
 }
 
+// Define the MovieList component
 const MovieList: React.FC = () => {
-  const [movies, setMovies] = useState<movieDetails[]>([]);
-  const [genres, setGenres] = useState<string[]>([]);
-  const [showTimes, setShowTimes] = useState<string[]>([]);
-  const [ratings, setRatings] = useState<string[]>([]);
-  const [selectedRating, setSelectedRating] = useState("All");
-  const [filteredMovies, setFilteredMovies] = useState<movieDetails[]>([]); // New state for filtered movies
-  const [selectedGenre, setSelectedGenre] = useState<string>("All");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [selectedShowTime, setSelectedShowTime] = useState<string>("All");
+  // Initialize state variables
+  const [movies, setMovies] = useState<movieDetails[]>([]); // List of movies
+  const [genres, setGenres] = useState<string[]>([]); // List of genres
+  const [showTimes, setShowTimes] = useState<string[]>([]); // List of show times
+  const [ratings, setRatings] = useState<string[]>([]); // List of ratings
+  const [selectedRating, setSelectedRating] = useState("All"); // Selected rating
+  const [filteredMovies, setFilteredMovies] = useState<movieDetails[]>([]); // Filtered list of movies
+  const [selectedGenre, setSelectedGenre] = useState<string>("All"); // Selected genre
+  const [errorMessage, setErrorMessage] = useState(""); // Error message
+  const [selectedShowTime, setSelectedShowTime] = useState<string>("All"); // Selected show time
 
+  // Define the filterMovies function
   const filterMovies = (
-    moviesList: movieDetails[],
-    selectedGenre: any | null,
-    selectedShowTime: any | null,
-    selectedRating: "Upto 5" | "6 and above" | any
+    moviesList: movieDetails[], // List of movies to filter
+    selectedGenre: any | null, // Selected genre
+    selectedShowTime: any | null, // Selected show time
+    selectedRating: "Upto 5" | "6 and above" | any // Selected rating
   ): movieDetails[] => {
+    // Filter movies based on selected genre, show time, and rating
     return moviesList.filter((movie) => {
       // Filter by genre (if selected)
       const genreMatch = selectedGenre !== "All" ? movie.genre.includes(selectedGenre) : true;
@@ -54,17 +58,18 @@ const MovieList: React.FC = () => {
     });
   };
 
+  // Fetch genres, showtimes, and ratings on component mount
   useEffect(() => {
-    // Fetch genres, showtimes, and ratings
     getFilterationList(setGenres, setShowTimes, setRatings);
     fetchMoviesToBook(setMovies);
   }, []);
 
+  // Apply filters whenever movies, selectedGenre, selectedShowTime, or selectedRating change
   useEffect(() => {
-    // Apply filters whenever movies, selectedGenre, selectedShowTime, or selectedRating change
     setFilteredMovies(filterMovies(movies, selectedGenre, selectedShowTime, selectedRating));
   }, [movies, selectedGenre, selectedShowTime, selectedRating]);
 
+  // Render the component
   return (
     <section>
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Movies</h2>
@@ -72,35 +77,37 @@ const MovieList: React.FC = () => {
         <div className={styles.filteration}>
           <p>Genre:</p>
           <CustomSelector
-            options={genres}
-            setSelectedValue={setSelectedGenre}
-            placeholder="Genre"
-            className="filterationSelector"
+            options={genres} // List of genres
+            setSelectedValue={setSelectedGenre} // Set selected genre
+            placeholder="Genre" // Placeholder text
+            className="filterationSelector" // CSS class
           />
 
           <p>Show Time:</p>
           <CustomSelector
-            options={showTimes}
-            setSelectedValue={setSelectedShowTime}
-            placeholder="Show time"
-            className="filterationSelector"
+            options={showTimes} // List of show times
+            setSelectedValue={setSelectedShowTime} // Set selected show time
+            placeholder="Show time" // Placeholder text
+            className="filterationSelector" // CSS class
           />
 
           <p>Rating:</p>
           <CustomSelector
-            options={ratings}
-            setSelectedValue={setSelectedRating}
-            placeholder="Rating"
-            className="filterationSelector"
+            options={ratings} // List of ratings
+            setSelectedValue={setSelectedRating} // Set selected rating
+            placeholder="Rating" // Placeholder text
+            className="filterationSelector" // CSS class
           />
         </div>
-        
+
         <div className={styles.movieList}>
-        {filteredMovies.length > 0 ? (
+          {filteredMovies.length > 0 ? (
+            // Render filtered movies
             filteredMovies.map((movie) => (
               <BookMovieCard key={movie._id} movie={movie} />
             ))
           ) : (
+            // Display message if no movies found
             <p className={styles.noMovies}>No movies found</p>
           )}
         </div>

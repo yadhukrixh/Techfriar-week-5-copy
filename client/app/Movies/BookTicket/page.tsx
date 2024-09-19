@@ -1,5 +1,6 @@
 "use client";
 
+// Import necessary components and utilities
 import TheaterDetails from "@/components/UserComponents/TheaterDetails/TheaterDetails";
 import styles from "./BookTicket.module.css";
 import { BookingProps, fetchTheatresAndShows } from "@/utils/fetchData";
@@ -10,24 +11,33 @@ import { movieData } from "@/utils/userUtils";
 import SeatSelection from "@/components/UserComponents/SeatMap/SeatMap";
 import SeatMap from "@/components/UserComponents/SeatMap/SeatMap";
 
+// Define the page component
 const page = () => {
+  // Get search parameters from the URL
   const searchParams = useSearchParams();
-  const [theaterList, setTheaterList] = useState<BookingProps[]>([]);
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [showSeatMapping, setSeatMapping] = useState(false);
-  const [movieId, setMovieId] = useState<any>(
+
+  // Initialize state variables
+  const [theaterList, setTheaterList] = useState<BookingProps[]>([]); // List of theaters and their show dates
+  const [selectedDate, setSelectedDate] = useState<string | null>(null); // Currently selected date
+  const [showSeatMapping, setSeatMapping] = useState(false); // Flag to show seat mapping
+  const [movieId, setMovieId] = useState<any>( // ID of the movie
     searchParams.get("movie") ? searchParams.get("movie") : ""
   );
-  const [movie, setMovie] = useState<movieDetails>();
-  const [showTimeId,setShowTimeId] = useState('')
+  const [movie, setMovie] = useState<movieDetails>(); // Details of the movie
+  const [showTimeId, setShowTimeId] = useState(''); // ID of the show time
+
+  // Fetch theater and show data when the component mounts or movie ID changes
   useEffect(() => {
     fetchTheatresAndShows(movieId, setTheaterList);
     movieData(movieId, setMovie);
   }, [movieId, setTheaterList, movieId, setMovie]);
 
+  // Handle date selection
   const handleDateSelect = (date: string) => {
     setSelectedDate(date);
   };
+
+  // Format date for display
   const formatDate = (date: string) => {
     const dateObj = new Date(date);
     const day = dateObj.toLocaleDateString("en-US", { weekday: "short" }); // e.g., 'Mon'
@@ -36,10 +46,13 @@ const page = () => {
     return { day, dayNum, month };
   };
 
+  // Render the component
   return (
     <div>
+      {/* Show theater list and date selector if seat mapping is not shown */}
       {!showSeatMapping && (
         <div className={styles.container}>
+          {/* Movie details */}
           <div className={styles.movieDetails}>
             <img
               src={movie?.posterUrl}
@@ -53,8 +66,9 @@ const page = () => {
               </p>
             </div>
           </div>
+
+          {/* Date selector */}
           <div className={styles.dateSelector}>
-            {/* Date Selector */}
             {theaterList[0]?.showDates.map((showDate, index) => {
               const { day, dayNum, month } = formatDate(showDate.date);
               return (
@@ -73,8 +87,8 @@ const page = () => {
             })}
           </div>
 
+          {/* Theater list */}
           <div className={styles.theaterList}>
-            {/* Theater List */}
             {theaterList.map((theaterData, index) => (
               <TheaterDetails
                 key={index}
@@ -89,11 +103,14 @@ const page = () => {
           </div>
         </div>
       )}
+
+      {/* Show seat mapping if selected */}
       {showSeatMapping &&
-        <SeatMap showtimeId={showTimeId}/>
+        <SeatMap showtimeId={showTimeId} />
       }
     </div>
   );
 };
 
+// Export the page component
 export default page;

@@ -1,4 +1,5 @@
 "use client"
+
 import styles from "./page.module.css";
 import LandingPage from "./LandingPage/LandingPage";
 import { handleGoogleCallback } from "@/utils/userUtils";

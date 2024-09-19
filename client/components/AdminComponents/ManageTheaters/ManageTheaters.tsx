@@ -1,5 +1,6 @@
 "use client";
 
+// Import necessary dependencies
 import React, { useEffect, useState } from "react";
 import styles from "./ManageTheaters.module.css";
 import InputComponent from "../../reusableComponents/InputComponent/InputComponent";
@@ -10,6 +11,7 @@ import PopupComponent from "../../reusableComponents/PopupComponent/PopupCompone
 import TheatersList from "../TheatersList/TheatersList";
 import { FetchedTheatersProps, fetchTheaters } from "@/utils/fetchData";
 
+// Define the interface for TheaterProps
 export interface TheaterProps {
   cinema_name: string;
   address?: string;
@@ -19,48 +21,63 @@ export interface TheaterProps {
   lng?: number;
 }
 
+// Define the ManageTheaters component
 const ManageTheaters = () => {
-  const [showAddTheaters, setShowAddTheaters] = useState(false);
-  const [lattitudes, setLattitudes] = useState("");
-  const [longitudes, setLongitudes] = useState("");
-  const [theatersList, setTheatersList] = useState<TheaterProps[]>([]);
-  const [theatersFound, setTheatersFound] = useState(false);
-  const [message, setMessage] = useState("");
-  const [theaterAdded, setTheaterAdded] = useState(false);
-  const [theaters, setTheaters] = useState<FetchedTheatersProps[]>([]);
-  const [errorMessage,setErrorMessage] = useState('');
+  // Initialize state variables
+  const [showAddTheaters, setShowAddTheaters] = useState(false); // Flag to show/hide the add theaters section
+  const [lattitudes, setLattitudes] = useState(""); // Store the latitude value
+  const [longitudes, setLongitudes] = useState(""); // Store the longitude value
+  const [theatersList, setTheatersList] = useState<TheaterProps[]>([]); // Store the list of theaters
+  const [theatersFound, setTheatersFound] = useState(false); // Flag to indicate if theaters are found
+  const [message, setMessage] = useState(""); // Store the message to display
+  const [theaterAdded, setTheaterAdded] = useState(false); // Flag to indicate if a theater is added
+  const [theaters, setTheaters] = useState<FetchedTheatersProps[]>([]); // Store the list of fetched theaters
+  const [errorMessage, setErrorMessage] = useState(''); // Store the error message
 
+  // Use effect hook to fetch theaters and update the error message
   useEffect(() => {
+    // Fetch theaters
     fetchTheaters(setTheaters);
 
+    // Update the error message based on the number of theaters
     if (theaters?.length === 0) {
       setErrorMessage("Please add any new Theaters to see the list.");
     } else {
       setErrorMessage('');
     }
-  }, [setTheaters,theaters,setErrorMessage]);
+  }, [setTheaters, theaters, setErrorMessage]);
 
+  // Function to get the current location
   const handleGetLocation = () => {
+    // Check if geolocation is supported
     if (navigator.geolocation) {
+      // Get the current position
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          // Update the latitude and longitude values
           setLattitudes(position.coords.latitude.toString());
           setLongitudes(position.coords.longitude.toString());
         },
         (error) => {
+          // Log the error
           console.error("Error getting location:", error);
         }
       );
     } else {
+      // Log the error
       console.error("Geolocation is not supported by this browser.");
     }
   };
 
+  // Function to handle the close popup event
   const handleClosePopup = () => {
+    // Toggle the theaterAdded flag
     setTheaterAdded(!theaterAdded);
+    // Toggle the showAddTheaters flag
     setShowAddTheaters(!showAddTheaters);
   };
 
+  // Return the JSX
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.manageMovieHeader}>
@@ -118,17 +135,19 @@ const ManageTheaters = () => {
                 setTheaterAdded={setTheaterAdded}
               />
             )}
+            {!theatersFound && message && 
+              <PopupComponent message={message} onClose={handleClosePopup}/>
+            }
           </div>
         </div>
       )}
 
-        {!showAddTheaters &&
-          <div>
-            <TheatersList theaters={theaters}/>
-            <p style={{width:'100%',color:'red',textAlign:'center'}}>{errorMessage}</p>
-          </div>
-        }
-
+      {!showAddTheaters &&
+        <div>
+          <TheatersList theaters={theaters} />
+          <p style={{ width: '100%', color: 'red', textAlign: 'center' }}>{errorMessage}</p>
+        </div>
+      }
 
       {theaterAdded && (
         <PopupComponent message={message} onClose={handleClosePopup} />

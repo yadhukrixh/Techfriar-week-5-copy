@@ -16,7 +16,9 @@ interface TheaterListProps {
     setTheaterAdded:(status:boolean)=>void;
 }
 
+
 const NewTheaterList: React.FC<TheaterListProps> = ({ theaters,setMessage,setTheaterAdded }) => {
+    
     return (
         <div className={styles.theaterGrid}>
             {theaters.map((theater, index) => (

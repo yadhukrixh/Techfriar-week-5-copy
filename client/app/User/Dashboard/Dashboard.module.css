@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 20px;
-    height: 85dvh;
+    min-height: 85dvh;
 }
 
 .ticketsList button{

@@ -38,6 +38,7 @@ export const fetchUserDetails = async (req: Request, res: Response) => {
 
 }
 
+
 // send otp to email
 export const sendOtp = async (req: Request, res: Response) => {
     const { email } = req.body;
@@ -233,6 +234,7 @@ export const confirmBooking = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error handling booking' });
     }
 };
+
 
 
 // handle admin login

@@ -1,4 +1,6 @@
 "use client";
+
+// Import necessary dependencies
 import { fetchSeatData, handleRazorpay, Seat } from "@/utils/userUtils";
 import React, { FC, useEffect, useState } from "react";
 import styles from "./SeatSelection.module.css"; // Import the CSS module
@@ -6,35 +8,40 @@ import ButtonComponent from "@/components/reusableComponents/ButtonComponent/But
 import { fetchUserDetails } from "@/utils/userUtils";
 import InputComponent from "@/components/reusableComponents/InputComponent/InputComponent";
 
+// Define the interface for seat map props
 interface seatMapProps {
   showtimeId: string;
 }
 
+// Define the SeatMap component
 const SeatMap: React.FC<seatMapProps> = ({ showtimeId }) => {
-  const [seatData, setSeatData] = useState<Seat[]>([]);
-  const [selectedSeatsId, setSelectedSeatsId] = useState<string[]>([]);
-  const [selectedSeats, setSelectedSeats] = useState<string[]>([]); // Seat numbers
-  const [movieName, setMovieName] = useState("");
-  const [theaterName, setTheaterName] = useState("");
-  const [showTime, setShowTime] = useState("");
-  const [showDate, setShowDate] = useState("");
-  const [amount, setAmount] = useState<number>(0);
-  const [razorpayLoaded, setRazorpayLoaded] = useState(false);
-  const [profileName, setProfleName] = useState("");
-  const [profileEmail, setProfileEmail] = useState("");
-  const [showNumberInput, setShowNumberInput] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  // Initialize state variables
+  const [seatData, setSeatData] = useState<Seat[]>([]); // Store seat data
+  const [selectedSeatsId, setSelectedSeatsId] = useState<string[]>([]); // Store selected seat IDs
+  const [selectedSeats, setSelectedSeats] = useState<string[]>([]); // Store selected seat numbers
+  const [movieName, setMovieName] = useState(""); // Store movie name
+  const [theaterName, setTheaterName] = useState(""); // Store theater name
+  const [showTime, setShowTime] = useState(""); // Store show time
+  const [showDate, setShowDate] = useState(""); // Store show date
+  const [amount, setAmount] = useState<number>(0); // Store total amount
+  const [razorpayLoaded, setRazorpayLoaded] = useState(false); // Store Razorpay SDK load status
+  const [profileName, setProfleName] = useState(""); // Store user profile name
+  const [profileEmail, setProfileEmail] = useState(""); // Store user email
+  const [showNumberInput, setShowNumberInput] = useState(false); // Store show number input status
+  const [phone, setPhone] = useState(""); // Store user phone number
+  const [errorMessage, setErrorMessage] = useState(""); // Store error message
 
+  // Define user details object
   const userDetails = {
     profileName: profileName,
     email: profileEmail,
     number: phone,
   };
 
+  // Get token from local storage
   const token = localStorage.getItem("token");
 
-  // Fetch seat data
+  // Fetch seat data on component mount
   useEffect(() => {
     fetchSeatData(
       showtimeId,
@@ -48,7 +55,7 @@ const SeatMap: React.FC<seatMapProps> = ({ showtimeId }) => {
     console.log(seatData);
   }, [showtimeId]);
 
-  // Fetch user details
+  // Fetch user details on component mount
   useEffect(() => {
     if (token) {
       fetchUserDetails({
@@ -59,7 +66,7 @@ const SeatMap: React.FC<seatMapProps> = ({ showtimeId }) => {
     }
   }, [token]);
 
-  // Load Razorpay SDK
+  // Load Razorpay SDK on component mount
   useEffect(() => {
     const loadRazorpayScript = async () => {
       const script = document.createElement("script");
@@ -98,20 +105,21 @@ const SeatMap: React.FC<seatMapProps> = ({ showtimeId }) => {
     }
   };
 
+  // Handle show whatsapp number input
   const handleShowWhatsapp = () => {
     setShowNumberInput(!showNumberInput);
   };
 
-  // handle whatsapp number 
+  // Handle save phone number
   const handleSavePhoneNumber = () => {
     const phoneNumberRegex = /^[6-9]\d{9}$/;
-  
+
     // Check if the phone number is not provided or is invalid
     if (!phone || !phoneNumberRegex.test(phone)) {
       setErrorMessage("Enter a valid Phone number and Try again");
       return;
     }
-  
+
     setErrorMessage('');
     // Proceed with the Razorpay flow if phone number is valid
     handleRazorpay(
@@ -126,10 +134,9 @@ const SeatMap: React.FC<seatMapProps> = ({ showtimeId }) => {
       showTime,
       selectedSeats
     );
-    
   };
-  
 
+  // Render the component
   return (
     <div>
       <div

@@ -6,6 +6,7 @@ import { ShowSchedules } from '../models/ShowSchedules';
 import mongoose from 'mongoose';
 
 
+// interfe for the movieprops
 interface MovieSearchProps {
     Title: string;
     Year: string;
@@ -20,9 +21,11 @@ interface MovieSearchProps {
     imdbID: string;
 }
 
+
+
+// Function to fetch movie o register
 export const fetchMovieDetailsToRegister = async (req: Request, res: Response) => {
     const { movieTitle, movieYear } = req.body;
-
     const fetchMovieDetails = {
         method: 'GET',
         url: `https://omdbapi.com/?t=/${movieTitle}&y=${movieYear}&apikey=bc53329f`
@@ -55,8 +58,8 @@ export const fetchMovieDetailsToRegister = async (req: Request, res: Response) =
 };
 
 
-//register movie
 
+//register movie
 export const registerMovie = async (req: Request, res: Response) => {
     const { newMovie, rating } = req.body;
     let movies;
@@ -108,6 +111,7 @@ export const fetchMovies = async (req: Request, res: Response) => {
 }
 
 
+// interface for the theaters
 interface TheaterProps {
     cinema_name: string,
     address: string,
@@ -124,6 +128,7 @@ interface TheaterListProps {
 }
 
 
+
 //delete theaters
 export const deleteMovie = async (req: Request, res: Response) => {
     try {
@@ -138,6 +143,8 @@ export const deleteMovie = async (req: Request, res: Response) => {
 
     }
 }
+
+
 
 // search nearby theaters
 export const searchTheaters = async (req: Request, res: Response) => {
@@ -169,6 +176,7 @@ export const searchTheaters = async (req: Request, res: Response) => {
 }
 
 
+
 //add theaters
 export const addTheater = async (req: Request, res: Response) => {
     const { newTheater } = req.body;
@@ -197,11 +205,14 @@ export const addTheater = async (req: Request, res: Response) => {
 }
 
 
+
 // fetch theaters
 export const fetchTheaters = async (req: Request, res: Response) => {
     let theaters = await Theaters.find();
     res.json(theaters);
 }
+
+
 
 //delete theaters
 export const deleteTheater = async (req: Request, res: Response) => {
@@ -217,6 +228,8 @@ export const deleteTheater = async (req: Request, res: Response) => {
 
     }
 }
+
+
 
 //fetch data for the show assign
 export const fetchMoviesForSetShow = async (req: Request, res: Response) => {
@@ -356,9 +369,8 @@ export const addShows = async (req: Request, res: Response) => {
 
 
 
+
 // fetch data for show shedules
-
-
 // Fetch all theater schedules
 export const fetchAllTheaterSchedules = async (req: Request, res: Response) => {
     try {
@@ -405,8 +417,9 @@ export const getGenres = async (req: Request, res: Response) => {
 
 }
 
-// fetch movies to show in booking page
 
+
+// fetch movies to show in booking page
 export const fetchMoviesToBook = async (req: Request, res: Response) => {
     const { movieIdList } = req.body;
 
@@ -486,8 +499,8 @@ export const fetchMovieToDetailedView = async (req: Request, res: Response) => {
 };
 
 
-//   set data for theater base booking
 
+//   set data for theater base booking
 export const theaterListToBook = async (req: Request, res: Response) => {
     const { movieId } = req.body;
 
@@ -546,6 +559,8 @@ export const theaterListToBook = async (req: Request, res: Response) => {
     }
 }
 
+
+
 //   fetch seat mapping
 export const fetchShowTimeId = async (req: Request, res: Response) => {
     const { movieId, theaterId, date, time } = req.body;
@@ -603,8 +618,9 @@ export const fetchShowTimeId = async (req: Request, res: Response) => {
 };
 
 
-// fetch seat allocation
 
+
+// fetch seat allocation
 export const fetchSeatAllocation = async (req: Request, res: Response) => {
     const { showtimeId } = req.body;
 
